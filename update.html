@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine amru? 👄💕</title>
+    <style>
+        /* Working tiny heart cursor */
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            background-color: #ffccd5;
+            color: #d63384;
+            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur193.cur'), auto;
+            overflow: hidden;
+        }
+
+        .container {
+            margin-top: 100px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Button styles */
+        .btn {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .yes-btn {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: gray;
+            color: white;
+            position: absolute;
+        }
+
+        /* Floating hearts animation */
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 3s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="bear" style="font-size: 5em;">💏</span>
+        <h1 id="question">Will You Be My Valentine? 💖</h1>
+        <button class="btn yes-btn" onclick="sayYes()">Yes</button>
+        <button class="btn no-btn" id="noBtn" onclick="askAgain()">No</button>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let messages = [
+            "Pleaseee say Yes! 🥺",
+            "Are you sure? 😈",
+            "Last chance! 🐽"
+        ];
+
+        function askAgain() {
+            let noBtn = document.getElementById('noBtn');
+
+            if (noClickCount < messages.length) {
+                document.getElementById('question').innerText = messages[noClickCount];
+                noClickCount++;
+
+                // Make "No" button move randomly
+                let x = Math.random() * (window.innerWidth - 100);
+                let y = Math.random() * (window.innerHeight - 100);
+                noBtn.style.left = `${x}px`;
+                noBtn.style.top = `${y}px`;
+            } else {
+                noBtn.style.display = "none"; // Hide "No" button
+                document.getElementById('question').innerText = "Now you can only say Yes 😏💕";
+            }
+        }
+
+        function sayYes() {
+            document.body.innerHTML = "<h1>🐻 Yay! ❤️ See you on Valentine's Day dumresh ,pape diya pair jaat dont care! 😍</h1>";
+        }
+
+        // Floating hearts effect
+        setInterval(() => {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.className = "heart";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s"; 
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }, 500);
+    </script>
+
+</body>
+</html>
